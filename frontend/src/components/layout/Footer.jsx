@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Facebook, 
-  Instagram, 
-  Twitter,
-  CreditCard,
-  Truck,
-  ShieldCheck,
-  HeadphonesIcon,
-  Plus,
-  Minus,
-  Search
-} from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPhone,
+  faEnvelope,
+  faMapMarkerAlt,
+  faCreditCard,
+  faTruck,
+  faShieldAlt,
+  faHeadphones,
+  faPlus,
+  faMinus,
+  faSearch
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+  faTiktok,
+  faXTwitter
+} from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   const [openSections, setOpenSections] = useState({
@@ -69,7 +74,7 @@ const Footer = () => {
             {/* Orta - Metin */}
             <div className="flex-1 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-600 mb-1">
-                <Mail className="w-5 h-5" />
+                <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5" />
                 <span className="text-sm">Kampanya ve yeniliklerden haberdar olmak için e-bültenimize abone olun!</span>
               </div>
               <h3 className="text-xl lg:text-2xl font-bold text-gray-900">E-Bülten Aboneliği</h3>
@@ -99,7 +104,7 @@ const Footer = () => {
                     {isSubmitting ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     ) : (
-                      <Search className="w-5 h-5" />
+                      <FontAwesomeIcon icon={faSearch} className="w-5 h-5" />
                     )}
                   </button>
                 </div>
@@ -127,7 +132,7 @@ const Footer = () => {
                 Kategoriler
               </h3>
               <button className="lg:hidden text-white">
-                {openSections.categories ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                {openSections.categories ? <FontAwesomeIcon icon={faMinus} className="w-5 h-5" /> : <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />}
               </button>
             </div>
             <ul className={`space-y-2 md:space-y-3 transition-all duration-300 lg:block mt-3 ${
@@ -135,34 +140,34 @@ const Footer = () => {
             }`}>
               <li>
                 <Link to="/kategori/cim-hali" className="text-white/70 hover:text-white transition-colors text-sm block py-1">
-                  Kuru Yemiş
+                  Halıfleks
                 </Link>
               </li>
               <li>
                 <Link to="/kategori/karo-hali" className="text-white/70 hover:text-white transition-colors text-sm block py-1">
-                  Kuru Meyve
+                  Çim Halı
                 </Link>
               </li>
               <li>
                 <Link to="/kategori/pvc-zemin" className="text-white/70 hover:text-white transition-colors text-sm block py-1">
-                  Lokum & Kahve
+                  Karo Halı
                 </Link>
               </li>
               <li>
                 <Link to="/kategori/paspas" className="text-white/70 hover:text-white transition-colors text-sm block py-1">
-                  Baharat
+                  PVC Zemin
                 </Link>
               </li>
               <li>
                 <Link to="/kategori/laminat" className="text-white/70 hover:text-white transition-colors text-sm block py-1">
-                  Antep Mutfağı
+                  Yolluk
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/kategori/yoresel" className="text-white/70 hover:text-white transition-colors text-sm block py-1">
                   Yöresel Lezzetler
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -180,7 +185,7 @@ const Footer = () => {
                 Önemli Bilgiler
               </h3>
               <button className="lg:hidden text-white">
-                {openSections.important ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                {openSections.important ? <FontAwesomeIcon icon={faMinus} className="w-5 h-5" /> : <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />}
               </button>
             </div>
             <ul className={`space-y-2 md:space-y-3 transition-all duration-300 lg:block mt-3 ${
@@ -228,7 +233,7 @@ const Footer = () => {
                 Hızlı Erişim
               </h3>
               <button className="lg:hidden text-white">
-                {openSections.quickAccess ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                {openSections.quickAccess ? <FontAwesomeIcon icon={faMinus} className="w-5 h-5" /> : <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />}
               </button>
             </div>
             <ul className={`space-y-2 md:space-y-3 transition-all duration-300 lg:block mt-3 ${
@@ -276,7 +281,7 @@ const Footer = () => {
                 Adres & İletişim
               </h3>
               <button className="lg:hidden text-white">
-                {openSections.contact ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                {openSections.contact ? <FontAwesomeIcon icon={faMinus} className="w-5 h-5" /> : <FontAwesomeIcon icon={faPlus} className="w-5 h-5" />}
               </button>
             </div>
             <div className={`space-y-3 md:space-y-4 transition-all duration-300 lg:block mt-3 ${
@@ -284,7 +289,7 @@ const Footer = () => {
             }`}>
               <div className="text-white/70 text-sm">
                 <div className="flex items-start gap-2 mb-2">
-                  <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 flex-shrink-0 mt-1" />
                   <span className="leading-relaxed">
                     Sarıgüllük, Milli Egemenlik Cd. NO:33 / A,<br className="hidden sm:block" />
                     <span className="sm:hidden"> </span>27060 Şehitkamil / Gaziantep / TÜRKİYE
@@ -294,7 +299,7 @@ const Footer = () => {
               
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#9ACD32]" />
+                  <FontAwesomeIcon icon={faPhone} className="w-4 h-4 text-[#9ACD32]" />
                   <span className="text-sm font-semibold text-[#9ACD32]">Müşteri Hizmetleri</span>
                 </div>
                 <a href="tel:+905327375216" className="text-white hover:text-[#9ACD32] transition-colors text-base md:text-sm font-bold block">
@@ -304,40 +309,38 @@ const Footer = () => {
 
               <div className="pt-2">
                 <h4 className="font-semibold mb-3 text-sm">Bizi takip edin</h4>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <a 
                     href="https://instagram.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-[#9ACD32] rounded flex items-center justify-center hover:bg-[#8BC34A] transition-colors"
+                    className="w-12 h-12 bg-[#7CB342] rounded-xl flex items-center justify-center hover:bg-[#689F38] transition-colors shadow-md"
                   >
-                    <Instagram className="w-4 h-4 text-black" />
+                    <FontAwesomeIcon icon={faInstagram} className="w-6 h-6 text-white" />
                   </a>
                   <a 
                     href="https://facebook.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-[#9ACD32] rounded flex items-center justify-center hover:bg-[#8BC34A] transition-colors"
+                    className="w-12 h-12 bg-[#7CB342] rounded-xl flex items-center justify-center hover:bg-[#689F38] transition-colors shadow-md"
                   >
-                    <Facebook className="w-4 h-4 text-black" />
+                    <FontAwesomeIcon icon={faFacebook} className="w-6 h-6 text-white" />
                   </a>
                   <a 
                     href="https://tiktok.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-[#9ACD32] rounded flex items-center justify-center hover:bg-[#8BC34A] transition-colors"
+                    className="w-12 h-12 bg-[#7CB342] rounded-xl flex items-center justify-center hover:bg-[#689F38] transition-colors shadow-md"
                   >
-                    <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">T</span>
-                    </div>
+                    <FontAwesomeIcon icon={faTiktok} className="w-6 h-6 text-white" />
                   </a>
                   <a 
-                    href="https://twitter.com" 
+                    href="https://x.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-[#9ACD32] rounded flex items-center justify-center hover:bg-[#8BC34A] transition-colors"
+                    className="w-12 h-12 bg-[#7CB342] rounded-xl flex items-center justify-center hover:bg-[#689F38] transition-colors shadow-md"
                   >
-                    <Twitter className="w-4 h-4 text-black" />
+                    <FontAwesomeIcon icon={faXTwitter} className="w-6 h-6 text-white" />
                   </a>
                 </div>
               </div>

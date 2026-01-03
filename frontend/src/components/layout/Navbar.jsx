@@ -120,7 +120,7 @@ const Navbar = () => {
   return (
     <nav 
       data-testid="navbar"
-      className="relative bg-white border-b border-gray-200 sticky top-[100px] md:top-[100px] z-40"
+      className="hidden lg:block relative bg-white border-b border-gray-200 sticky top-[140px] z-30"
       onMouseLeave={handleMouseLeave}
     >
       {/* Desktop Navbar */}
