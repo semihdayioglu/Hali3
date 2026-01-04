@@ -28,19 +28,19 @@ const Topbar = () => {
       data-testid="topbar"
       className="bg-gradient-to-r from-lime-400 to-lime-500 py-1 lg:py-1.5 relative sticky top-0 z-50"
     >
-      <div className="flex items-center justify-between px-2 lg:justify-center lg:gap-4 md:gap-14">
+      <div className="flex items-center justify-between px-0 lg:justify-center lg:gap-0 md:gap-2">
         {/* SOL OK */}
         <button 
           onClick={previousMessage}
           data-testid="topbar-prev"
-          className="p-1 hover:bg-white/20 rounded transition-colors flex-shrink-0"
+          className="p-0 hover:bg-white/20 rounded transition-colors flex-shrink-0 mr-0"
           aria-label="Önceki mesaj"
         >
           <ChevronLeft className="w-3 h-3 lg:w-4 lg:h-4 md:w-5 md:h-5 text-gray-800" strokeWidth={2} />
         </button>
 
         {/* MESAJ */}
-        <div className="flex-1 lg:min-w-[200px] md:min-w-[280px] text-center">
+        <div className="flex-1 lg:min-w-[120px] md:min-w-[180px] text-center">
           <p 
             className="text-gray-800 font-bold text-xs lg:text-sm md:text-base transition-all duration-300 whitespace-nowrap overflow-hidden text-ellipsis px-1"
             dangerouslySetInnerHTML={{
@@ -56,7 +56,7 @@ const Topbar = () => {
         <button 
           onClick={nextMessage}
           data-testid="topbar-next"
-          className="p-1 hover:bg-white/20 rounded transition-colors flex-shrink-0"
+          className="p-0 hover:bg-white/20 rounded transition-colors flex-shrink-0 ml-0"
           aria-label="Sonraki mesaj"
         >
           <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 md:w-5 md:h-5 text-gray-800" strokeWidth={2} />

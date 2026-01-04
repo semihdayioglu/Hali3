@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Package, Search, Truck, CheckCircle, Clock, MapPin } from 'lucide-react';
+import { Package, Search, Truck, CheckCircle, Clock } from 'lucide-react';
 import { toast } from 'sonner';
 
 const TrackOrderPage = () => {
@@ -93,121 +93,216 @@ const TrackOrderPage = () => {
   };
 
   return (
-    <div data-testid="track-order-page" className="bg-[#F5F8F2] min-h-screen py-8">
-      <div className="container mx-auto px-4 md:px-20">
-        <div className="max-w-2xl mx-auto">
-          {/* Başlık */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-[#4A7C4E] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Truck className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-[#2C3E2D] mb-2">Kargo Takip</h1>
-            <p className="text-[#8A9A8B]">Siparişinizin durumunu takip edin</p>
-          </div>
+    <div data-testid="track-order-page" className="bg-white min-h-screen py-12 md:py-16">
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl mx-auto">
+          {/* Sipariş Sorgula Bölümü */}
+          <div className="bg-white rounded-lg p-6 md:p-8 mb-8 md:mb-12">
+            {/* Başlık */}
+            <h1 className="text-2xl md:text-3xl font-bold text-[#2C3E2D] text-center mb-3">
+              Sipariş Sorgula
+            </h1>
+            <p className="text-center text-[#8A9A8B] text-sm md:text-base mb-6">
+              Vermiş olduğunuz sipariş numarasının detayına aşağıdaki formu doldurarak ulaşabilirsiniz.
+            </p>
 
-          {/* Arama Formu */}
-          <form onSubmit={handleSearch} className="bg-white rounded-2xl p-6 shadow-sm mb-8">
-            <label className="block text-sm font-medium text-[#2C3E2D] mb-2">
-              Takip Numarası
-            </label>
-            <div className="flex gap-3">
-              <div className="relative flex-1">
-                <Package className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#8A9A8B]" />
+            {/* Arama Formu */}
+            <form onSubmit={handleSearch} className="space-y-4">
+              {/* E-posta Input */}
+              <div>
+                <label className="block text-sm font-medium text-[#2C3E2D] mb-2">
+                  E-posta <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  data-testid="email-input"
+                  placeholder="E-postanız"
+                  className="w-full h-12 px-4 rounded-lg border border-[#E0E0E0] 
+                           focus:outline-none focus:border-[#4A7C4E] focus:ring-1 focus:ring-[#4A7C4E]
+                           transition-all text-sm text-[#2C3E2D] placeholder:text-[#BDBDBD]"
+                />
+              </div>
+
+              {/* Sipariş No Input */}
+              <div>
+                <label className="block text-sm font-medium text-[#2C3E2D] mb-2">
+                  Sipariş No <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   data-testid="tracking-input"
                   value={trackingCode}
                   onChange={(e) => setTrackingCode(e.target.value)}
-                  placeholder="Örn: YD123456"
-                  className="w-full h-12 pl-12 pr-4 rounded-xl border border-[#D4D4D4] 
-                           focus:ring-2 focus:ring-[#4A7C4E] focus:border-transparent transition-all"
+                  placeholder="Sipariş Numaranız"
+                  className="w-full h-12 px-4 rounded-lg border border-[#E0E0E0] 
+                           focus:outline-none focus:border-[#4A7C4E] focus:ring-1 focus:ring-[#4A7C4E]
+                           transition-all text-sm text-[#2C3E2D] placeholder:text-[#BDBDBD]"
                 />
               </div>
+
+              {/* Sorgula Butonu */}
               <button
                 type="submit"
                 data-testid="track-btn"
                 disabled={isSearching}
-                className="px-6 h-12 bg-[#4A7C4E] text-white rounded-xl font-medium 
-                         flex items-center gap-2 hover:bg-[#3A633D] transition-colors
-                         disabled:opacity-70"
+                className="w-full h-12 bg-[#2C5F2D] text-white rounded-lg font-semibold
+                         hover:bg-[#1F4620] transition-colors disabled:opacity-70
+                         md:mt-6"
               >
-                {isSearching ? (
-                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                ) : (
-                  <Search className="w-5 h-5" />
-                )}
-                Sorgula
+                {isSearching ? 'Sorgulanıyor...' : 'Sorgula'}
               </button>
-            </div>
-            <p className="text-xs text-[#8A9A8B] mt-2">
-              Demo takip numaraları: YD123456 (Dağıtımda), YD789012 (Teslim Edildi)
-            </p>
-          </form>
+            </form>
 
-          {/* Sonuçlar */}
+            <p className="text-xs text-[#8A9A8B] mt-3 text-center">
+              Demo: E-posta: demo@example.com, Takip No: YD123456
+            </p>
+          </div>
+
+          {/* Logo */}
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-block mb-4">
+              <svg width="120" height="140" viewBox="0 0 120 140" className="mx-auto">
+                <text x="60" y="100" fontSize="24" fontWeight="bold" textAnchor="middle" fill="#2C5F2D">
+                  BAHÇEM
+                </text>
+                <text x="60" y="115" fontSize="10" textAnchor="middle" fill="#8A9A8B">
+                  .com.tr
+                </text>
+                <circle cx="40" cy="40" r="6" fill="#7CB342" opacity="0.8" />
+                <circle cx="55" cy="30" r="7" fill="#7CB342" opacity="0.9" />
+                <circle cx="70" cy="35" r="6" fill="#7CB342" opacity="0.8" />
+                <circle cx="50" cy="50" r="5" fill="#7CB342" opacity="0.7" />
+                <circle cx="70" cy="50" r="6" fill="#7CB342" opacity="0.8" />
+              </svg>
+            </div>
+          </div>
+
+          {/* E-Bülten Aboneliği */}
+          <div className="bg-white rounded-lg p-6 md:p-8 mb-8">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="flex-shrink-0">
+                <svg width="32" height="32" viewBox="0 0 32 32" className="text-[#7CB342]">
+                  <path fill="currentColor" d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-[#2C3E2D] mb-1">E-Bülten Aboneliği</h3>
+                <p className="text-sm text-[#8A9A8B]">
+                  Kampanya ve yeniliklerinden haberdar olmak için e-bultenimize abone olun!
+                </p>
+              </div>
+            </div>
+            
+            <form className="flex gap-2">
+              <input
+                type="email"
+                placeholder="E-posta adresinizi girin"
+                className="flex-1 h-11 px-4 rounded-full border border-[#E0E0E0] 
+                         focus:outline-none focus:border-[#4A7C4E] focus:ring-1 focus:ring-[#4A7C4E]
+                         transition-all text-sm text-[#2C3E2D] placeholder:text-[#BDBDBD]"
+              />
+              <button
+                type="submit"
+                className="p-3 bg-white border border-[#E0E0E0] rounded-full 
+                         hover:bg-gray-50 transition-colors"
+              >
+                <Search className="w-5 h-5 text-[#4A7C4E]" />
+              </button>
+            </form>
+          </div>
+
+          {/* Kategoriler Accordion */}
+          <details className="group bg-white rounded-lg border border-[#E0E0E0] mb-4">
+            <summary className="flex items-center justify-between p-6 cursor-pointer">
+              <h3 className="text-base font-semibold text-[#2C3E2D]">Kategoriler</h3>
+              <span className="text-[#8A9A8B] group-open:rotate-180 transition-transform">
+                +
+              </span>
+            </summary>
+            <div className="px-6 pb-6 border-t border-[#E0E0E0]">
+              <ul className="space-y-2 text-sm text-[#8A9A8B]">
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">HALİFLEKS</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">ÇİM HALI</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">KARO HALI</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">PVC ZEMİN</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">PASPAS</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">AKSESUAR</a></li>
+              </ul>
+            </div>
+          </details>
+
+          {/* Önemli Bilgiler Accordion */}
+          <details className="group bg-white rounded-lg border border-[#E0E0E0]">
+            <summary className="flex items-center justify-between p-6 cursor-pointer">
+              <h3 className="text-base font-semibold text-[#2C3E2D]">Önemli Bilgiler</h3>
+              <span className="text-[#8A9A8B] group-open:rotate-180 transition-transform">
+                +
+              </span>
+            </summary>
+            <div className="px-6 pb-6 border-t border-[#E0E0E0]">
+              <ul className="space-y-2 text-sm text-[#8A9A8B]">
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">Hakkımızda</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">İletişim</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">Gizlilik Politikası</a></li>
+                <li><a href="#" className="hover:text-[#4A7C4E] transition-colors">Şartlar ve Koşullar</a></li>
+              </ul>
+            </div>
+          </details>
+
+          {/* Sonuç Gösterimi */}
           {trackingResult && (
             <div 
               data-testid="tracking-result"
-              className="bg-white rounded-2xl p-6 shadow-sm animate-in fade-in slide-in-from-bottom-4"
+              className="mt-8 bg-white rounded-lg p-6 md:p-8 border-l-4 border-[#4A7C4E]"
             >
+              <h3 className="text-lg font-bold text-[#2C3E2D] mb-4">Sipariş Bilgileri</h3>
+              
               {/* Kargo Bilgileri */}
-              <div className="flex items-center justify-between pb-6 border-b border-[#E8E8E8]">
+              <div className="grid md:grid-cols-2 gap-6 mb-6 pb-6 border-b border-[#E0E0E0]">
                 <div>
-                  <p className="text-sm text-[#8A9A8B]">Takip No</p>
+                  <p className="text-sm text-[#8A9A8B] mb-1">Takip No</p>
                   <p className="font-bold text-[#2C3E2D]">{trackingResult.code}</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-[#8A9A8B]">Kargo Firması</p>
+                <div>
+                  <p className="text-sm text-[#8A9A8B] mb-1">Kargo Firması</p>
                   <p className="font-medium text-[#2C3E2D]">{trackingResult.carrier}</p>
                 </div>
               </div>
 
-              {/* Durum Özeti */}
-              <div className="py-6 border-b border-[#E8E8E8]">
-                <div className="flex items-center gap-4">
-                  {trackingResult.status === 'delivered' ? (
-                    <CheckCircle className="w-12 h-12 text-green-500" />
-                  ) : (
-                    <Clock className="w-12 h-12 text-blue-500" />
-                  )}
-                  <div>
-                    <p className={`text-xl font-bold ${getStatusColor(trackingResult.status)}`}>
-                      {getStatusText(trackingResult.status)}
-                    </p>
-                    <p className="text-sm text-[#8A9A8B]">
-                      Tahmini Teslimat: {trackingResult.estimatedDelivery}
-                    </p>
-                  </div>
-                </div>
+              {/* Durum */}
+              <div className="mb-6">
+                <p className={`text-xl font-bold mb-2 ${getStatusColor(trackingResult.status)}`}>
+                  {getStatusText(trackingResult.status)}
+                </p>
+                <p className="text-sm text-[#8A9A8B]">
+                  Tahmini Teslimat: {trackingResult.estimatedDelivery}
+                </p>
               </div>
 
               {/* Timeline */}
-              <div className="pt-6">
-                <h3 className="font-semibold text-[#2C3E2D] mb-4">Kargo Geçmişi</h3>
-                <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold text-[#2C3E2D] mb-4">Kargo Geçmişi</h4>
+                <div className="space-y-3">
                   {trackingResult.timeline.map((step, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex flex-col items-center">
-                        <div className={`w-4 h-4 rounded-full ${
+                    <div key={index} className="flex gap-3">
+                      <div className="flex flex-col items-center pt-1">
+                        <div className={`w-3 h-3 rounded-full ${
                           step.completed ? 'bg-[#4A7C4E]' : 'bg-[#D4D4D4]'
                         }`} />
                         {index < trackingResult.timeline.length - 1 && (
-                          <div className={`w-0.5 h-12 ${
+                          <div className={`w-0.5 h-10 ${
                             step.completed ? 'bg-[#4A7C4E]' : 'bg-[#D4D4D4]'
                           }`} />
                         )}
                       </div>
-                      <div className="flex-1 pb-4">
-                        <p className={`font-medium ${
+                      <div>
+                        <p className={`font-medium text-sm ${
                           step.completed ? 'text-[#2C3E2D]' : 'text-[#8A9A8B]'
                         }`}>
                           {step.title}
                         </p>
                         {step.date && (
-                          <p className="text-sm text-[#8A9A8B]">{step.date}</p>
+                          <p className="text-xs text-[#8A9A8B] mt-1">{step.date}</p>
                         )}
                       </div>
                     </div>
@@ -216,20 +311,6 @@ const TrackOrderPage = () => {
               </div>
             </div>
           )}
-
-          {/* Yardım Bölümü */}
-          <div className="mt-8 text-center">
-            <p className="text-[#8A9A8B] mb-4">Kargonuzla ilgili sorun mu var?</p>
-            <a
-              href="https://wa.me/905325398429?text=Merhaba,%20kargo%20takip%20ile%20ilgili%20yardım%20istiyorum."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#4A7C4E] font-medium hover:underline"
-            >
-              <MapPin className="w-5 h-5" />
-              WhatsApp ile Destek Alın
-            </a>
-          </div>
         </div>
       </div>
     </div>

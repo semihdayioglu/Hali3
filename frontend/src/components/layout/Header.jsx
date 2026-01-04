@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoritesContext';
+import logo from '../../assets/images/logo.png';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -188,16 +189,17 @@ const Header = () => {
           <Link 
             to="/" 
             data-testid="logo"
-            className="flex items-center gap-2"
+            className="flex items-center"
           >
-            <div className="w-12 h-12 bg-[#4A7C4E] rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">YD</span>
-            </div>
-            <span className="text-xl font-bold text-[#2C3E2D]">YER DÖŞEME</span>
+            <img 
+              src={logo} 
+              alt="Yer Döşeme Logo" 
+              className="h-40 w-auto object-contain"
+            />
           </Link>
 
           {/* Müşteri Hizmetleri - Desktop */}
-          <div className="hidden lg:flex items-center gap-3 ml-8">
+          {/* <div className="hidden lg:flex items-center gap-3 ml-8">
             <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
               <Phone className="w-5 h-5 text-[#4A7C4E]" />
             </div>
@@ -205,7 +207,7 @@ const Header = () => {
               <p className="text-xs text-[#4A7C4E] font-medium">24 Müşteri Hizmetleri</p>
               <p className="text-base font-bold text-[#2C3E2D]">+90 532 539 84 29</p>
             </div>
-          </div>
+          </div> */}
 
           {/* Arama Kutusu */}
           <form 

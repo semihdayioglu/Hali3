@@ -29,6 +29,13 @@ export const categories = [
     image: "https://images.unsplash.com/photo-1681258356422-e9d9531deb63?w=800",
   },
   {
+    id: "halifleks",
+    name: "Halifleks",
+    slug: "halifleks",
+    description: "Ev ve ofis için halıfleks döşemeler",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+  },
+  {
     id: "aksesuar",
     name: "Aksesuar",
     slug: "aksesuar",
